@@ -4,6 +4,14 @@
 	<meta charset="utf-8">
 	<title>MVC Test</title>
 	<style>
+		body {
+			margin: 0;
+			color: #333;
+			font-family: monospace;
+			font-size: 13px;
+			padding: 50px;
+			background: #eee;
+		}
 		.mvc-loading * {
 			opacity: 0;
 		}
@@ -11,12 +19,18 @@
 </head>
 <body data-mvc="//root">
 	
-	<div data-controller="helloWorld" data-arg-foo="bar">
+	<div data-controller="getInfo">
+		<h1>Welcome to {{name}} version {{ver}}</h1>
+		<p>{{name}} is a super simple dynamic content framework for rendering JSON data through a template.</p>
+		<p>It can utilize local content, or fetch remote JSON from an API.</p>
+	</div>
+	
+	<div data-controller="helloWorld">
 		<span data-template="hb">
 			<h1>Hello, {{foo}}</h1>
 		</span>
 		
-		<div data-controller="goodbyeWorld" data-arg-foo="bar">
+		<div data-controller="goodbyeWorld">
 			<span data-template="hb">
 				Goodbye, {{foo}}
 			</span>

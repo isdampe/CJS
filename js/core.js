@@ -41,7 +41,7 @@
 	
 	this.executeController = function( method, controller ) {
 		
-		var data = {}, remoteData, url;
+		var data = {}, remoteData, url, templateWrapper = controller.element.querySelector('[data-template]');
 		
 		controller.element.classList.add("cjs-loading");
 		
@@ -58,10 +58,16 @@
 		if ( url ) {
 			cjs.remoteData(url, data, method, controller, function(data,method,controller){
 				
+				var templateWrapper = controller.element.querySelector('[data-template]');
+				
 				data = cjs.concatObject( method.remotedata, data );
 				
 				//Callback to render with data.
-				controller.element.querySelector('[data-template]').innerHTML = method.render( controller.element, data );
+				if ( templateWrapper ) {
+					templateWrapper.innerHTML = method.render( controller.element, data );
+				} else {
+					controller.element.innerHTML = method.render( controller.element, data );
+				}
 				controller.element.classList.remove("cjs-loading");
 				
 			});
@@ -70,7 +76,11 @@
 		}
 		
 		//Callback to render with data.
-		controller.element.querySelector('[data-template]').innerHTML = method.render( controller.element, data );
+		if ( templateWrapper ) {
+			templateWrapper.innerHTML = method.render( controller.element, data );
+		} else {
+			controller.element.innerHTML = method.render( controller.element, data );
+		}
 		controller.element.classList.remove("cjs-loading");
 		
 	};

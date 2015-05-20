@@ -23,4 +23,18 @@ cjs.methods.goodbyeWorld = {
 	}
 };
 
+cjs.methods.getInfo = {
+	localdata: {
+		ver: "0.0.1",
+		name: "CJS"
+	},
+	render: function(element,data) {
+		
+		var template = Handlebars.compile( element.innerHTML );
+		return template(data);
+		
+	}
+};
+
+
 cjs.init();
